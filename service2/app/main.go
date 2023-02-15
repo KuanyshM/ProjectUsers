@@ -107,17 +107,6 @@ func main() {
 
 	})
 
-	r.Get("/get-test", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Println("asd")
-		type ResponseTest struct {
-			Name string
-		}
-
-		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(ResponseTest{Name: "hi from server"})
-
-	})
-
 	// запускаем сервер на порту 8090
 	fmt.Println("Сервер запущен на http://localhost:8090")
 	http.ListenAndServe(":8090", r)
