@@ -1,0 +1,28 @@
+version: "3.9"
+services:
+
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_DATABASE: main
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    ports:
+      - "27017:27017"
+
+  service1:
+    build:
+      context: ./service1/
+    container_name: service1
+    ports:
+      - 8080:8080
+
+  service2:
+    build:
+      context: ./service2/
+    container_name: service2
+    ports:
+      - 8090:8090
